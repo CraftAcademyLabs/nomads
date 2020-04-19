@@ -3,18 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cypress/code-coverage": "^3.3.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "istanbul-lib-coverage": "^3.0.0",
+    "nyc": "^15.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:silent": "BROWSER=none react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:open": "cypress open",
+    "cypress": "start-server-and-test start:silent http://localhost:3000 cy:open && coveralls",
+    "coveralls": "cat coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CraftAcademyLabs/nomads.git"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@cypress/instrument-cra": "^1.1.0",
+    "coveralls": "^3.0.11",
+    "cypress": "^4.4.0",
+    "start-server-and-test": "^1.11.0"
   }
 }
